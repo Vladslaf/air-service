@@ -1,16 +1,19 @@
 package com.task.airservice.dto.request;
 
-import lombok.AllArgsConstructor;
+import com.task.airservice.model.Airplane;
+import java.time.LocalDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class AirplaneRequestDto {
+    private String factorySerialNumber;
     private String name;
-    private String companyType;
-    private LocalDate foundedAt;
+    private Long airCompanyId;
+    private int numberOfFlights;
+    private int flightDistance;
+    private int fuelCapacity;
+    private Airplane.Type type;
+    private LocalDate createdAt;
 }

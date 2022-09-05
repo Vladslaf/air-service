@@ -1,48 +1,51 @@
 package com.task.airservice.service.mapper.impl;
 
-import com.task.airservice.dto.request.AirplaneRequestDto;
-import com.task.airservice.dto.response.AirplaneResponseDto;
+import com.task.airservice.dto.request.FlightRequestDto;
+import com.task.airservice.dto.response.FlightResponseDto;
 import com.task.airservice.model.Airplane;
-import com.task.airservice.service.AirCompanyService;
+import com.task.airservice.model.Flight;
+import com.task.airservice.service.AirplaneService;
 import com.task.airservice.service.mapper.RequestDtoMapper;
 import com.task.airservice.service.mapper.ResponseDtoMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AirplaneMapper implements ResponseDtoMapper<AirplaneResponseDto, Airplane>,
-        RequestDtoMapper<AirplaneRequestDto, Airplane> {
-    private final AirCompanyService airCompanyService;
+public class FlightMapper implements ResponseDtoMapper<FlightResponseDto, Flight>,
+        RequestDtoMapper<FlightRequestDto, Flight> {
+    private final AirplaneService airplaneService;
 
-    public AirplaneMapper(AirCompanyService airCompanyService) {
-        this.airCompanyService = airCompanyService;
+    public FlightMapper(AirplaneService airplaneService) {
+        this.airplaneService = airplaneService;
     }
 
     @Override
-    public AirplaneResponseDto mapToDto(Airplane airplane) {
-        AirplaneResponseDto dto = new AirplaneResponseDto();
-        dto.setId(airplane.getId());
-        dto.setName(airplane.getName());
-        dto.setFactorySerialNumber(airplane.getFactorySerialNumber());
-        dto.setAirCompanyId(airplane.getAirCompany().getId());
-        dto.setNumberOfFlights(airplane.getNumberOfFlights());
-        dto.setFlightDistance(airplane.getFlightDistance());
-        dto.setFuelCapacity(airplane.getFuelCapacity());
-        dto.setType(airplane.getType());
-        dto.setCreatedAt(airplane.getCreatedAt());
+    public Flight mapToModel(FlightRequestDto dto) {
+        Flight flight = new Flight();
+        Airplane airplane = airplaneService.get(dto.getAirplaneId());
+        flight.setAirplane(airplane);
+        flight.setAirCompany(airplane.getAirCompany());
+        flight.setDepartureCountry(dto.getDepartureCountry());
+        flight.setDestinationCountry(dto.getDestinationCountry());
+        flight.setDistance(dto.getDistance());
+        flight.setEstimatedFlightTime(dto.getEstimatedFlightTime());
+        return flight;
+    }
+
+    @Override
+    public FlightResponseDto mapToDto(Flight flight) {
+        FlightResponseDto dto = new FlightResponseDto();
+        dto.setId(flight.getId());
+        dto.setFlightStatus(flight.getFlightStatus());
+        dto.setAirplaneId(flight.getAirplane().getId());
+        dto.setAirCompanyId(flight.getAirCompany().getId());
+        dto.setDepartureCountry(flight.getDepartureCountry());
+        dto.setDestinationCountry(flight.getDestinationCountry());
+        dto.setDistance(flight.getDistance());
+        dto.setEstimatedFlightTime(flight.getEstimatedFlightTime());
+        dto.setStartedAt(flight.getStartedAt());
+        dto.setEndedAt(flight.getEndedAt());
+        dto.setDelayStartedAt(flight.getDelayStartedAt());
+        dto.setCreatedAt(flight.getCreatedAt());
         return dto;
-    }
-
-    @Override
-    public Airplane mapToModel(AirplaneRequestDto dto) {
-        Airplane airplane = new Airplane();
-        airplane.setAirCompany(airCompanyService.get(dto.getAirCompanyId()));
-        airplane.setFactorySerialNumber(dto.getFactorySerialNumber());
-        airplane.setName(dto.getName());
-        airplane.setCreatedAt(dto.getCreatedAt());
-        airplane.setFlightDistance(dto.getFlightDistance());
-        airplane.setFuelCapacity(dto.getFuelCapacity());
-        airplane.setType(dto.getType());
-        airplane.setNumberOfFlights(dto.getNumberOfFlights());
-        return airplane;
     }
 }
