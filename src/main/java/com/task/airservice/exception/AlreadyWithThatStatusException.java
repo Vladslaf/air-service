@@ -1,7 +1,7 @@
 package com.task.airservice.exception;
 
-public class DataProcessingException extends RuntimeException {
-    public DataProcessingException(String message) {
+public class AlreadyWithThatStatusException extends RuntimeException {
+    public AlreadyWithThatStatusException(String message) {
         super(message);
     }
 }

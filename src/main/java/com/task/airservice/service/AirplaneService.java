@@ -1,4 +1,13 @@
 package com.task.airservice.service;
 
-public class AirplaneService {
+import com.task.airservice.model.Airplane;
+
+public interface AirplaneService {
+    Airplane moveToCompany(Long id, Long companyId);
+
+    Airplane getById(Long id);
+
+    Airplane get(Long id);
+
+    Airplane save(Airplane airplane);
 }

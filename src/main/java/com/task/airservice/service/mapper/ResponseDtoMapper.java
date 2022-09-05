@@ -1,4 +1,4 @@
-package dev.home.library.service.mapper;
+package com.task.airservice.service.mapper;
 
 public interface ResponseDtoMapper<D, M> {
     D mapToDto(M m);

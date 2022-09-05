@@ -2,36 +2,47 @@ package com.task.airservice.service.impl;
 
 import com.task.airservice.exception.DataProcessingException;
 import com.task.airservice.model.AirCompany;
-import com.task.airservice.repository.AirCompanyRepository;
+import com.task.airservice.model.Airplane;
+import com.task.airservice.repository.AirplaneRepository;
 import com.task.airservice.service.AirCompanyService;
+import com.task.airservice.service.AirplaneService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AirCompanyServiceImpl implements AirCompanyService {
-    private final AirCompanyRepository airCompanyRepository;
+public class AirplaneServiceImpl implements AirplaneService {
+    private final AirplaneRepository airplaneRepository;
+    private final AirCompanyService airCompanyService;
 
-    public AirCompanyServiceImpl(AirCompanyRepository airCompanyRepository) {
-        this.airCompanyRepository = airCompanyRepository;
+    public AirplaneServiceImpl(AirplaneRepository airplaneRepository,
+                               AirCompanyService airCompanyService) {
+        this.airplaneRepository = airplaneRepository;
+        this.airCompanyService = airCompanyService;
     }
 
     @Override
-    public AirCompany add(AirCompany author) {
-        return airCompanyRepository.save(author);
+    public Airplane moveToCompany(Long id, Long companyId) {
+        Airplane airplane = getById(id);
+        AirCompany airCompany = airCompanyService.get(companyId);
+        airplane.setAirCompany(airCompany);
+        return airplaneRepository.save(airplane);
     }
 
     @Override
-    public AirCompany update(AirCompany author) {
-        return airCompanyRepository.save(author);
+    public Airplane getById(Long id) {
+        return airplaneRepository.findById(id).orElseThrow(
+                () -> new DataProcessingException("No such airplane found by id: "
+                        + id));
     }
 
     @Override
-    public void delete(Long id) {
-        airCompanyRepository.deleteById(id);
+    public Airplane get(Long id) {
+        return airplaneRepository.findById(id).orElseThrow(
+                () -> new DataProcessingException("No such airplane found by id: "
+                        + id));
     }
 
     @Override
-    public AirCompany get(Long id) {
-        return airCompanyRepository.findById(id).orElseThrow(
-                () -> new DataProcessingException("Can not get AirCompany by id: " + id));
+    public Airplane save(Airplane airplane) {
+        return airplaneRepository.save(airplane);
     }
 }
