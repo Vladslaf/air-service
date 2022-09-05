@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "0cde5305-e6e9-4e61-a05f-a3eb163262b3",
+		"name": "air-service-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21519222"
+	},
+	"item": [
+		{
+			"name": "air-company getById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"SpaceDev\",\r\n  \"companyType\": \"GOVERNMENT\",\r\n  \"foundedAt\": \"2012-09-05\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/air-companies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"air-companies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "air-company add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"SpaceDev\",\r\n  \"companyType\": \"GOVERNMENT\",\r\n  \"foundedAt\": \"2012-09-05\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/air-companies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"air-companies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "air-company update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"companyType\": \"ASSOCIATE\",\r\n  \"foundedAt\": \"2022-09-05\",\r\n  \"name\": \"New Name\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/air-companies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"air-companies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "air-company delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/air-companies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"air-companies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "airplanes moveToCompany",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/airplanes/2?companyId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"airplanes",
+						"2"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "airplanes add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"airCompanyId\": 2,\r\n  \"createdAt\": \"2021-09-05\",\r\n  \"factorySerialNumber\": \"1236 4569\",\r\n  \"flightDistance\": 6000,\r\n  \"fuelCapacity\": 1500,\r\n  \"name\": \"Pigean\",\r\n  \"numberOfFlights\": 10,\r\n  \"type\": \"CONCORDE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/airplanes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"airplanes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "flights add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"airCompanyId\": 2,\r\n  \"airplaneId\": 2,\r\n  \"departureCountry\": \"Ukraine\",\r\n  \"destinationCountry\": \"Slovakia\",\r\n  \"distance\": 1000,\r\n  \"estimatedFlightTime\": 180\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "flights change status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/flights/change/1?statusToChange=COMPLETED\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"change",
+						"1"
+					],
+					"query": [
+						{
+							"key": "statusToChange",
+							"value": "COMPLETED\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "flights active and started more than day ago",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/flights/active/started-more-than-day-ago",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"active",
+						"started-more-than-day-ago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "flight fina all by status and company name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/flights/air-companies/by-status?companyName=Cosmos&status=ACTIVE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"air-companies",
+						"by-status"
+					],
+					"query": [
+						{
+							"key": "companyName",
+							"value": "Cosmos"
+						},
+						{
+							"key": "status",
+							"value": "ACTIVE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "flight find all completed and longer duration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/flights/completed/duration-more-than-estimated",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flights",
+						"completed",
+						"duration-more-than-estimated"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
