@@ -5,6 +5,9 @@ import com.task.airservice.exception.DataProcessingException;
 import com.task.airservice.model.Flight;
 import com.task.airservice.repository.FlightRepository;
 import com.task.airservice.service.FlightService;
+import com.task.airservice.service.strategy.ActiveStatusStrategy;
+import com.task.airservice.service.strategy.CompletedStatusStrategy;
+import com.task.airservice.service.strategy.DelayedStatusStrategy;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -12,9 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class FlightServiceImpl implements FlightService {
     private final FlightRepository flightRepository;
+    private final ActiveStatusStrategy activeStatusStrategy;
+    private final CompletedStatusStrategy completedStatusStrategy;
+    private final DelayedStatusStrategy delayedStatusStrategy;
 
-    public FlightServiceImpl(FlightRepository flightRepository) {
+    public FlightServiceImpl(FlightRepository flightRepository,
+                             ActiveStatusStrategy activeStatusStrategy,
+                             CompletedStatusStrategy completedStatusStrategy,
+                             DelayedStatusStrategy delayedStatusStrategy) {
         this.flightRepository = flightRepository;
+        this.activeStatusStrategy = activeStatusStrategy;
+        this.completedStatusStrategy = completedStatusStrategy;
+        this.delayedStatusStrategy = delayedStatusStrategy;
     }
 
     @Override
@@ -45,16 +57,13 @@ public class FlightServiceImpl implements FlightService {
         }
         switch (statusToChange) {
             case DELAYED:
-                flight.setFlightStatus(Flight.FlightStatus.DELAYED);
-                flight.setDelayStartedAt(LocalDateTime.now());
+                delayedStatusStrategy.changeStatus(flight);
                 break;
             case ACTIVE:
-                flight.setFlightStatus(Flight.FlightStatus.ACTIVE);
-                flight.setStartedAt(LocalDateTime.now());
+                activeStatusStrategy.changeStatus(flight);
                 break;
             case COMPLETED:
-                flight.setFlightStatus(Flight.FlightStatus.COMPLETED);
-                flight.setEndedAt(LocalDateTime.now());
+                completedStatusStrategy.changeStatus(flight);
                 break;
             default:
                 break;

@@ -6746,3 +6746,24 @@ Caused by: java.sql.SQLException: Access denied for user 'rootDB_PASSWORD=4e5r6t
 2022-09-06 01:39:53.417  INFO 13244 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2022-09-06 01:39:53.417  INFO 13244 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-09-06 01:39:53.427  INFO 13244 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-09-06 02:08:41.805  INFO 8212 --- [main] c.t.a.AirServiceApplicationTests         : Starting AirServiceApplicationTests on DESKTOP-2IH2I8A with PID 8212 (started by vlad in G:\MateJava\air-service)
+2022-09-06 02:08:41.841  INFO 8212 --- [main] c.t.a.AirServiceApplicationTests         : No active profile set, falling back to default profiles: default
+2022-09-06 02:08:42.585  INFO 8212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-09-06 02:08:42.648  INFO 8212 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55ms. Found 3 JPA repository interfaces.
+2022-09-06 02:08:43.212  INFO 8212 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-09-06 02:08:43.268  INFO 8212 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-06 02:08:43.335  INFO 8212 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-09-06 02:08:43.514  INFO 8212 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-06 02:08:43.601  WARN 8212 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-06 02:08:43.885  INFO 8212 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-09-06 02:08:44.341  INFO 8212 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-09-06 02:08:44.363  INFO 8212 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-09-06 02:08:44.729  INFO 8212 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-09-06 02:08:45.701  INFO 8212 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-06 02:08:45.709  INFO 8212 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-06 02:08:46.072  INFO 8212 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-09-06 02:08:46.078  INFO 8212 --- [main] c.t.a.AirServiceApplicationTests         : Started AirServiceApplicationTests in 4.541 seconds (JVM running for 5.356)
+2022-09-06 02:08:46.209  INFO 8212 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-06 02:08:46.210  INFO 8212 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-09-06 02:08:46.211  INFO 8212 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-09-06 02:08:46.220  INFO 8212 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
