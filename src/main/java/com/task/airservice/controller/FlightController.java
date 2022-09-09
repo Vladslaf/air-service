@@ -47,7 +47,7 @@ public class FlightController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping()
+    @PostMapping
     FlightResponseDto add(@RequestBody FlightRequestDto requestDto) {
         Flight flight = flightService.saveWithPending(requestDtoMapper.mapToModel(requestDto));
         return responseDtoMapper.mapToDto(flight);

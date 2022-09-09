@@ -37,7 +37,7 @@ public class AirplaneController {
         return airplaneResponseDtoMapper.mapToDto(airplaneService.moveToCompany(id, companyId));
     }
 
-    @PostMapping()
+    @PostMapping
     AirplaneResponseDto add(@RequestBody AirplaneRequestDto requestDto) {
         Airplane airplane = airplaneService.save(airplaneRequestDtoMapper.mapToModel(requestDto));
         return airplaneResponseDtoMapper.mapToDto(airplane);
